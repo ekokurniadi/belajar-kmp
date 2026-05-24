@@ -372,7 +372,7 @@ fun LoginScreen() {
 
     val state by viewModel
         .state
-        .collectAsState()
+        .collectAsStateWithLifecycle()
 
     Text(state.email)
 }

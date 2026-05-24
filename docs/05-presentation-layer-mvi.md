@@ -374,7 +374,7 @@ fun BlogScreen(
     onBlogClick: (Int) -> Unit = {},
 ) {
 
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -454,7 +454,8 @@ fun BlogScreen(
 ```
 
 COMMENT:
-- `collectAsState()` ≈ BlocBuilder
+- `collectAsStateWithLifecycle()` ≈ BlocBuilder
+  (auto-pause saat app di background, hemat resource)
 - `LaunchedEffect(Unit)` ≈ initState (sekali jalan)
 - `when (val s = state)` → assign ke local `s`
   untuk smart cast
@@ -871,7 +872,7 @@ EmptyView(message = "Wishlist kosong")
 | `State` (sealed/data class) | `State` (sealed interface) |
 | `emit(state.copyWith(...))` | `_state.value = current.copy(...)` |
 | `emit(NewState())` | `_state.value = BlogState.X` |
-| `BlocBuilder<B, S>` | `collectAsState()` + `when` |
+| `BlocBuilder<B, S>` | `collectAsStateWithLifecycle()` + `when` |
 | `BlocListener<B, S>` | `LaunchedEffect { effect.collect { } }` |
 | `on<Event>((e, emit) { })` | `when (intent) { ... }` |
 | `context.read<Bloc>()` | `koinViewModel()` / `koinInject()` |
@@ -908,7 +909,7 @@ EmptyView(message = "Wishlist kosong")
 | Cocok untuk loading/error/data? | ✅ Ya | ❌ Tidak |
 | Cocok untuk snackbar/navigation? | ❌ Tidak | ✅ Ya |
 | Type | `StateFlow<SealedInterface>` | `Channel` + `receiveAsFlow` |
-| Di-collect dengan | `collectAsState()` + `when` | `LaunchedEffect { collect { } }` |
+| Di-collect dengan | `collectAsStateWithLifecycle()` + `when` | `LaunchedEffect { collect { } }` |
 
 ---
 

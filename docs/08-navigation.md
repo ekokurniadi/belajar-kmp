@@ -406,7 +406,7 @@ fun BlogDetailScreen(
     onBack: () -> Unit,
 ) {
 
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     val snackbarHostState = remember { SnackbarHostState() }
 

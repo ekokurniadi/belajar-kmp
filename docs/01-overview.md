@@ -31,7 +31,7 @@ pendekatan yang sangat mirip dengan:
 | flutter_bloc | MVI + StateFlow |
 | Cubit | ViewModel |
 | emit() | _state.update() |
-| BlocBuilder | collectAsState() |
+| BlocBuilder | collectAsStateWithLifecycle() |
 | get_it | Koin |
 | injectable | Koin module |
 | dio | Ktor |
