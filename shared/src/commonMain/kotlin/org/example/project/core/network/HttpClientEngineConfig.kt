@@ -42,7 +42,7 @@ internal fun HttpClientConfig<*>.applyCommonConfig() {
         requestTimeoutMillis = 30_000
     }
     defaultRequest{
-        url("https://jsonplaceholder.typicode.com")
+        url("https://jsonplaceholder.typicode.com/")
         contentType(ContentType.Application.Json)
         header(HttpHeaders.Accept,"application/json")
     }

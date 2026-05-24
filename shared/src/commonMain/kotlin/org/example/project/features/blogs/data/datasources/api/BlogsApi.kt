@@ -17,8 +17,8 @@ class BlogsApiImpl(
 ) : BlogsApi {
 
     override suspend fun getBlogs(): List<BlogDto> =
-        httpClient.get("/posts").body()
+        httpClient.get("posts").body()
 
     override suspend fun getBlogById(id: Int): BlogDto =
-        httpClient.get("/posts/$id").body()
+        httpClient.get("posts/$id").body()
 }
